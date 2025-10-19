@@ -524,9 +524,42 @@
                 <db.script>mysql</db.script>
                 <jpa.database>MYSQL</jpa.database>
                 <jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:mysql://[Change Me]:3306/petclinic?useUnicode=true</jdbc.url>
+                <jdbc.url>jdbc:mysql://localhost:3306/petclinic?useUnicode=true;characterEncoding=utf8;serverTimezone=Asia/Seoul</jdbc.url>
+
                 <jdbc.username>root</jdbc.username>
-                <jdbc.password>petclinic</jdbc.password>
+                <jdbc.password>1234</jdbc.password>
+
+                <!-- ✅ Connection Pool - HA 최적화 -->
+                <jdbc.initialSize>5</jdbc.initialSize>
+                <jdbc.maxActive>20</jdbc.maxActive>
+                <jdbc.maxIdle>5</jdbc.maxIdle>
+                <jdbc.minIdle>5</jdbc.minIdle>
+                <jdbc.maxWait>10000</jdbc.maxWait>
+
+                <!-- ✅ 연결 검증 - 매우 적극적 -->
+                <jdbc.testOnBorrow>true</jdbc.testOnBorrow>
+                <jdbc.testOnReturn>true</jdbc.testOnReturn>
+                <jdbc.testWhileIdle>true</jdbc.testWhileIdle>
+                <jdbc.validationQuery>SELECT 1</jdbc.validationQuery>
+                <jdbc.validationInterval>5000</jdbc.validationInterval>
+
+                <!-- ✅ 연결 수명 관리 - 짧게 -->
+                <jdbc.timeBetweenEvictionRunsMillis>10000</jdbc.timeBetweenEvictionRunsMillis>
+                <jdbc.minEvictableIdleTimeMillis>30000</jdbc.minEvictableIdleTimeMillis>
+                <jdbc.maxAge>300000</jdbc.maxAge>
+
+                <!-- ✅ 죽은 연결 제거 -->
+                <jdbc.removeAbandoned>true</jdbc.removeAbandoned>
+                <jdbc.removeAbandonedTimeout>60</jdbc.removeAbandonedTimeout>
+                <jdbc.logAbandoned>true</jdbc.logAbandoned>
+
+                <!-- JPA/Hibernate 설정 -->
+                <jpa.showSql>false</jpa.showSql>
+                <jpa.generateDdl>false</jpa.generateDdl>
+                <jpa.hibernate.ddlAuto>none</jpa.hibernate.ddlAuto>
+                <jpa.hibernate.dialect>org.hibernate.dialect.MySQL8Dialect</jpa.hibernate.dialect>
+                <jpa.hibernate.formatSql>true</jpa.hibernate.formatSql>
+
             </properties>
             <dependencies>
                 <dependency>
